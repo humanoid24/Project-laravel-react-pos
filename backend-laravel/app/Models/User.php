@@ -30,4 +30,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected $fillable = ['name','email','password','role'];
+
+    public function transaksi() {
+        return $this->hasMany(Transaksi::class, 'kasir_id');
+    }
 }
