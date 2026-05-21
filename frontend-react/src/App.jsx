@@ -8,7 +8,7 @@ import TransaksiPage from './pages/TransaksiPage';
 import KategoriPage from './pages/KategoriPage';
 import LaporanPage from './pages/LaporanPage';
 import TambahKaryawanPage from "./pages/TambahKaryawanPage";
-
+import Dashboard from "./Pages/Kasir/Dashboard";
 
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
         <Route path="/kategori" element={<KategoriPage />} />
         <Route path="/transaksi" element={<TransaksiPage />} />
         <Route path="/laporan" element={<LaporanPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );
