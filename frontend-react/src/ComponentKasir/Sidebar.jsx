@@ -21,7 +21,7 @@ const navItems = [
   {
     icon: LayoutDashboardIcon,
     label: "Dashboard",
-    path: "/dashboard",
+    path: "/dashboard-kasir",
   },
   {
     icon: Box,

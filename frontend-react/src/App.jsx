@@ -14,7 +14,7 @@ import Dashboard from "./Pages/Kasir/Dashboard";
 function App() {
   return (
     <Router>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<DashboardPage />} />
         <Route path="/karyawan" element={<KaryawanPage />} />
@@ -23,7 +23,8 @@ function App() {
         <Route path="/kategori" element={<KategoriPage />} />
         <Route path="/transaksi" element={<TransaksiPage />} />
         <Route path="/laporan" element={<LaporanPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route path="/dashboard-kasir" element={<Dashboard />} />
       </Routes>
     </Router>
   );
