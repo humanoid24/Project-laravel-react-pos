@@ -9,12 +9,16 @@ import KategoriPage from './pages/KategoriPage';
 import LaporanPage from './pages/LaporanPage';
 import TambahKaryawanPage from "./pages/TambahKaryawanPage";
 import Dashboard from "./Pages/Kasir/Dashboard";
+import ProdukKasir from './Pages/Kasir/Produk';
+import Coba from './Pages/Kasir/Coba';
+import TransaksiKasir from './Pages/Kasir/Transaksi';
+import BayarTransaksi from './Pages/Kasir/BayarTransaksi';
 
 
 function App() {
   return (
     <Router>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<DashboardPage />} />
         <Route path="/karyawan" element={<KaryawanPage />} />
@@ -23,7 +27,12 @@ function App() {
         <Route path="/kategori" element={<KategoriPage />} />
         <Route path="/transaksi" element={<TransaksiPage />} />
         <Route path="/laporan" element={<LaporanPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route path="/dashboard-kasir" element={<Dashboard />} />
+        <Route path="/produk-kasir" element={<ProdukKasir />} />
+        <Route path="/transaksi-kasir" element={<TransaksiKasir />} />
+        <Route path="/bayar-transaksi-kasir" element={<BayarTransaksi />} />
+        <Route path="/coba" element={<Coba />} />
       </Routes>
     </Router>
   );
