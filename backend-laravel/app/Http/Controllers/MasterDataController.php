@@ -56,7 +56,7 @@ class MasterDataController extends Controller
 
     public function indexProducts()
     {
-        $products = Produk::all();
+        $products = Produk::with('kategori')->get();
         return response()->json([
             'success' => true,
             'data' => $products

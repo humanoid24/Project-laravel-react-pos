@@ -1,98 +1,137 @@
 import {
-  BarChart2,
-  Box,
-  ChevronDown,
-  File,
-  Folder,
-  FolderOpen,
-  Infinity as InfinityIcon,
   LayoutDashboard,
-  LayoutDashboardIcon,
-  Settings,
+  BarChart3,
   Users,
   Wallet,
-  WalletCards,
-  X,
+  FolderOpen,
+  ShoppingBasketIcon,
+  CreditCardIcon,
 } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
-const navItems = [
-  {
-    icon: LayoutDashboardIcon,
-    label: "Dashboard",
-    path: "/dashboard-kasir",
-  },
-  {
-    icon: Box,
-    label: "Produk",
-    path: "#",
-  },
-  {
-    icon: Wallet,
-    label: "Transaksi",
-    path: "#",
-  }
-];
+function SidebarItem({ icon: Icon, label, to, active }) {
+  return (
+    <Link
+      to={to}
+      className={`
+        flex w-full items-center gap-3 rounded-xl
+        px-3 py-3 text-sm font-medium transition
 
+        ${
+          active
+            ? "bg-[#010694]/10 text-[#010694]"
+            : `
+              text-slate-600
+              hover:bg-slate-100
 
-export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
-  const [masterOpen, setMasterOpen] = useState(false);
+              dark:text-slate-400
+              dark:hover:bg-slate-800
+            `
+        }
+      `}
+    >
+      <Icon size={18} />
+      {label}
+    </Link>
+  );
+}
+
+function Sidebar({ sidebarOpen, setSidebarOpen }) {
+  const location = useLocation();
 
   return (
     <>
-      {/* Mobile overlay */}
+      {/* Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm lg:hidden"
           onClick={() => setSidebarOpen(false)}
+          className="
+            fixed inset-0 z-40
+            bg-black/40
+            lg:hidden
+          "
         />
       )}
-      {/* ── Sidebar ── */}
+
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col justify-between border-r border-slate-200 bg-white transition-transform duration-300 dark:border-slate-700 dark:bg-slate-800
-            ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:static lg:translate-x-0`}
+        className={`
+          fixed inset-y-0 left-0 z-50 w-64
+          transform border-r transition-transform duration-300
+
+          bg-white
+          border-slate-200
+
+          dark:bg-[#111623]
+          dark:border-slate-800
+
+          lg:static lg:translate-x-0
+
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+        `}
       >
-        <div>
-          {/* Logo */}
-          <div className="flex h-16 items-center gap-2 border-b border-slate-100 px-6 dark:border-slate-700">
-            <div className="flex h-6 w-6 items-center justify-center rounded bg-blue-900 text-white">
-              <InfinityIcon size={14} />
-            </div>
-            <span className="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white">
-              INFINITY
-            </span>
+        <div className="flex h-full flex-col justify-between">
+          <div>
+            {/* Logo */}
+            <div
+              className="
+                flex h-16 items-center
+                border-b
+                border-slate-200
+                px-6
 
-            <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
-              <X size={20} />
-            </button>
-          </div>
-
-          {/* Nav */}
-          <nav className="space-y-1 px-3 py-6">
-            {navItems.map(({ icon: Icon, label, path }) => {
-              const active = location.pathname === path;
-
-              return (
-                <div key={label}>
-                  <Link
-                    to={path}
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all
-            ${
-              active
-                ? "bg-blue-50 text-blue-900 dark:bg-blue-900/20 dark:text-blue-100"
-                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
-            }`}
-                  >
-                    <Icon size={20} strokeWidth={1.5} />
-                    {label}
-                  </Link>
+                dark:border-slate-800
+              "
+            >
+              <div className="flex items-center gap-2">
+                <div
+                  className="
+                    flex h-8 w-8 items-center justify-center
+                    rounded bg-[#010694] text-white
+                  "
+                >
+                  ∞
                 </div>
-              );
-            })}
-          </nav>
+
+                <h1
+                  className="
+                    text-lg font-bold
+                    text-slate-900
+                    dark:text-white
+                  "
+                >
+                  INFINITY
+                </h1>
+              </div>
+            </div>
+
+            {/* Nav */}
+            <nav className="space-y-1 p-4">
+              <SidebarItem
+                icon={LayoutDashboard}
+                label="Dashboard"
+                to="/dashboard-kasir"
+                active={location.pathname === "/dashboard-kasir"}
+              />
+
+              <SidebarItem
+                icon={ShoppingBasketIcon}
+                label="Produk"
+                to="/produk-kasir"
+                active={location.pathname === "/produk-kasir"}
+              />
+
+              <SidebarItem
+                icon={CreditCardIcon}
+                label="Transaksi"
+                to="/transaksi-kasir"
+                active={location.pathname === "/transaksi-kasir"}
+              />
+            </nav>
+          </div>
         </div>
       </aside>
     </>
   );
 }
+
+export default Sidebar;

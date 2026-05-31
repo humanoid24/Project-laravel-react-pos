@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
+use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
 {
@@ -24,7 +25,7 @@ class TransaksiController extends Controller
         ]);
     }
 
-    public function store(\Illuminate\Http\Request $request)
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'invoice' => 'required|string',
@@ -42,7 +43,7 @@ class TransaksiController extends Controller
         ], 201);
     }
 
-    public function update(\Illuminate\Http\Request $request, $id)
+    public function update(Request $request, $id)
     {
         $transaksi = Transaksi::findOrFail($id);
         $validated = $request->validate([
